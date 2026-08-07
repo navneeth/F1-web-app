@@ -5,8 +5,10 @@ from monsterui.all import *
 hdrs = Theme.blue.headers()
 
 # Create your app with the theme
-app, rt = fast_app(hdrs=hdrs)
-
+_app, rt = fast_app(hdrs=hdrs)
+app = _app
+application = app
+handler = app
 
 # Include a CDN link for monsterui (will load styles if available)
 MonsterCSS = Link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/monsterui@latest/dist/monsterui.min.css")
@@ -59,5 +61,8 @@ def get():
 			hx_get="/change", style='padding:24px; text-align:center;'
 		)
 	)
+# ============================================================================
+# Run the app
+# ============================================================================
 
 serve()
