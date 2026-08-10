@@ -1,6 +1,9 @@
 from fasthtml.common import *
 from monsterui.all import *
 
+from drivers import f1_drivers  # Import the list of F1 drivers from drivers.py
+
+
 # Choose a theme color (blue, green, red, etc)
 hdrs = Theme.blue.headers()
 
@@ -46,6 +49,23 @@ def ex_card2_wide():
                     Button("Read", cls=(ButtonT.primary,'h-6'))))),
         cls=CardT.hover)
 
+def ex_card3():
+    def team_member(name, role, location="Remote"):
+        return Card(
+            DivLAligned(
+                DiceBearAvatar(name, h=24, w=24),
+                Div(H3(name), P(role))),
+            footer=DivFullySpaced(
+                DivHStacked(UkIcon("map-pin", height=16), P(location)),
+                DivHStacked(*(UkIconLink(icon, height=16) for icon in ("mail", "linkedin", "github")))))
+
+    team = [
+        team_member(driver[0], driver[1], driver[2])
+        for driver in f1_drivers
+    ]
+
+    return Grid(*team, cols_sm=1, cols_md=1, cols_lg=2, cols_xl=3)
+
 
 @rt('/')
 def get():
@@ -58,6 +78,7 @@ def get():
 			P('F1 Grand Prix Live!'),
 			# Embed the F1 card example directly on the homepage
 			ex_card2_wide(),
+			ex_card3(),
 			hx_get="/change", style='padding:24px; text-align:center;'
 		)
 	)
