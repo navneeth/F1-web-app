@@ -67,8 +67,13 @@ def ex_card3():
     return Grid(*team, cols_sm=1, cols_md=1, cols_lg=2, cols_xl=3)
 
 
-@rt('/')
-def get():
+# FastHTML route naming (Change 1):
+# - Use @rt with NO path inside the brackets.
+# - The function name becomes the URL path automatically.
+# - The special name "index" maps to the home page "/".
+#   So `def index()` is the same as `@rt('/') def get()` — but cleaner!
+@rt
+def index():
 	# page content: include the monsterui stylesheet link followed by navbar and main content
 	return Div(
 		MonsterCSS,
