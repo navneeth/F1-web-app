@@ -56,8 +56,8 @@ def ex_card3():
                 DiceBearAvatar(name, h=24, w=24),
                 Div(H3(name), P(role))),
             footer=DivFullySpaced(
-                DivHStacked(UkIcon("map-pin", height=16), P(location)),
-                DivHStacked(*(UkIconLink(icon, height=16) for icon in ("mail", "linkedin", "github")))))
+                DivHStacked(UkIcon("flag", height=16), P(location)),
+                DivHStacked(*(UkIconLink(icon, height=16) for icon in ("car", "flag", "trophy")))))
 
     team = [
         team_member(driver[0], driver[1], driver[2])
