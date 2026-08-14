@@ -16,16 +16,21 @@ handler = app
 # Include a CDN link for monsterui (will load styles if available)
 MonsterCSS = Link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/monsterui@latest/dist/monsterui.min.css")
 
-# Simple navbar using basic HTML structure; classes can be picked up by monsterui if present
+nav_link = 'margin:0 12px; color:inherit; text-decoration:none;'
+
+# Navbar links (Change 2):
+# Pass the route *function* to href — not a string like '/teams'.
+# FastHTML converts it to the right URL for you.
+# Bonus: if you rename the function later, the link still works!
 def Navbar():
 	return Div(
-		Div('Logo', _class='nav-logo', style='font-weight:700;'),
+		A('Logo', href=index, _class='nav-logo', style='font-weight:700; color:inherit; text-decoration:none;'),
 		Div(
-			A('Teams', href='/teams', style='margin:0 12px; color:inherit; text-decoration:none;'),
-			A('Drivers', href='/drivers', style='margin:0 12px; color:inherit; text-decoration:none;'),
-			A('Calendar', href='/calendar', style='margin:0 12px; color:inherit; text-decoration:none;'),
-			A('History', href='/history', style='margin:0 12px; color:inherit; text-decoration:none;'),
-			A('About', href='/about', style='margin:0 12px; color:inherit; text-decoration:none;'),
+			A('Teams', href=teams, style=nav_link),
+			A('Drivers', href=drivers, style=nav_link),
+			A('Calendar', href=calendar, style=nav_link),
+			A('History', href=history, style=nav_link),
+			A('About', href=about, style=nav_link),
 			_class='nav-links',
 			style='display:flex; align-items:center;'
 		),
@@ -87,6 +92,29 @@ def index():
 			hx_get="/change", style='padding:24px; text-align:center;'
 		)
 	)
+
+# Placeholder routes so navbar links work (real pages come in Change 5).
+# Each name matches a navbar link — same pattern as index above.
+@rt
+def teams():
+	return Div(MonsterCSS, Navbar(), P('Teams page — coming soon!'))
+
+@rt
+def drivers():
+	return Div(MonsterCSS, Navbar(), P('Drivers page — coming soon!'))
+
+@rt
+def calendar():
+	return Div(MonsterCSS, Navbar(), P('Calendar page — coming soon!'))
+
+@rt
+def history():
+	return Div(MonsterCSS, Navbar(), P('History page — coming soon!'))
+
+@rt
+def about():
+	return Div(MonsterCSS, Navbar(), P('About page — coming soon!'))
+
 # ============================================================================
 # Run the app
 # ============================================================================
