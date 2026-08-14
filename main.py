@@ -67,14 +67,28 @@ def teams():
 
 @rt
 def drivers():
+    # Create a card for each F1 driver using the data from drivers.py 
+    def team_member(name, role, location="Remote"):
+        return Card(
+            DivLAligned(DiceBearAvatar(name, h=24, w=24), Div(H3(name), P(role))),
+            footer=DivFullySpaced(
+                DivHStacked(UkIcon("flag", height=16), P(location)),
+                DivHStacked(
+                    *(UkIconLink(icon, height=16) for icon in ("car", "flag", "trophy"))
+                ),
+            ),
+        )
+
+    team = [team_member(driver[0], driver[1], driver[2]) for driver in f1_drivers]
+
     return Div(
         MonsterCSS,
         Navbar(),
-        H1("Drivers Page"),
-        P("This is the Drivers page. Content coming soon!"),
-        style="padding:24px; text-align:center;",
+        Div(
+            Grid(*team, cols_sm=1, cols_md=1, cols_lg=2, cols_xl=3),
+            style="padding:24px; text-align:center;",
+        ),
     )
-
 
 @rt
 def calendar():
