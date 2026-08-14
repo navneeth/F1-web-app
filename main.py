@@ -81,7 +81,14 @@ def drivers():
 
     team = [team_member(driver[0], driver[1], driver[2]) for driver in f1_drivers]
 
-    return Grid(*team, cols_sm=1, cols_md=1, cols_lg=2, cols_xl=3)
+    return Div(
+        MonsterCSS,
+        Navbar(),
+        Div(
+            Grid(*team, cols_sm=1, cols_md=1, cols_lg=2, cols_xl=3),
+            style="padding:24px; text-align:center;",
+        ),
+    )
 
 @rt
 def calendar():
