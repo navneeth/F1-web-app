@@ -113,7 +113,7 @@ def ex_card2_wide():
             ),
             Div(cls="space-y-3 uk-width-expand")(
                 H4("Explore upcoming F1 Grand prix events (with results)"),
-                P("Subscribe to get live uptates and results from all the F1 grand "),
+                P("Subscribe to get live updates and results from all the F1 grand "),
                 DivFullySpaced(
                     map(Small, ["McLaren", "20-October-2024"]), cls=TextT.muted
                 ),
